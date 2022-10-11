@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Courier New", Courier, monospace;
-  color: white;
 }
 
 body {
@@ -22,6 +21,7 @@ header {
   font-size: 45px;
   font-weight: bold;
   text-transform: uppercase;
+  color: white;
 }
 
 footer {
@@ -31,5 +31,6 @@ footer {
 }
 
 footer a {
+  color: white;
   text-decoration: none;
 }
