@@ -1,63 +1,45 @@
-const density = "Ñ@#W$9876543210?!abc;:+=-,._              ";
-// const density = " .:-i|=+%0#@";
+// Characters sets
+// const density = "Ñ@#W$9876543210?!abc;:+=-,._ ";
+const density = ".:-i|=+%0#@";
 
-let img;
-let dropzone;
-let body;
-
-function preload() {
-  img = loadImage("../neo.jpg");
-}
+let video;
 
 function setup() {
   createCanvas(600, 600);
-  img.resize(50, 50);
-  dropzone = select("main");
-  body = select("body");
+  video = createCapture(VIDEO);
+  video.size(50, 50);
+  video.hide();
 }
 
 function draw() {
   clear();
 
-  dropzone.dragOver(highlight);
-  dropzone.dragLeave(unHighlight);
-  dropzone.drop(getFile, unHighlight);
+  video.loadPixels();
 
-  function highlight() {
-    dropzone.style("background-color", "rgba(255,255,255,0.1");
-  }
+  let w = width / video.width;
+  let h = height / video.height;
 
-  function unHighlight() {
-    dropzone.style("background-color", "rgba(0,0,0,0");
-  }
+  // Get pixels index
+  for (let j = 0; j < video.height; j++) {
+    for (let i = 0; i < video.width; i++) {
+      const pixelIndex = (i + j * video.width) * 4;
 
-  function getFile(file) {
-    img = loadImage(file.data);
-  }
+      // Colors
+      const r = video.pixels[pixelIndex + 0];
+      const g = video.pixels[pixelIndex + 1];
+      const b = video.pixels[pixelIndex + 2];
 
-  img.resize(50, 50);
-
-  let w = width / img.width;
-  let h = height / img.height;
-
-  img.loadPixels();
-
-  for (let j = 0; j < img.height; j++) {
-    for (let i = 0; i < img.width; i++) {
-      const pixelIndex = (i + j * img.width) * 4;
-      const r = img.pixels[pixelIndex + 0];
-      const g = img.pixels[pixelIndex + 1];
-      const b = img.pixels[pixelIndex + 2];
-
+      // Gray scale
       const avg = (r + g + b) / 3;
 
-      fill(r, g, b);
+      fill("green");
       textSize(w);
       textAlign(CENTER, CENTER);
 
       const len = density.length;
-      const charIndex = floor(map(avg, 0, 255, 0, len));
+      const charIndex = floor(map(avg, 0, 122, len, 0));
 
+      // Draw
       text(density.charAt(charIndex), i * w + w * 0.5, j * h + h * 0.5);
     }
   }
