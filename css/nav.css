@@ -2,9 +2,35 @@ nav {
   width: 100%;
   height: 100%;
   padding: 0 10px;
-  /* background: red; */
   display: flex;
   align-items: center;
   justify-content: right;
   gap: 50px;
+}
+
+#theme {
+  position: relative;
+  overflow: hidden;
+  width: 60px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: var(--background-light);
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+
+  transition: background 0.2s;
+}
+
+#theme::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+
+  transition: transform 0.2s;
+
+  background-color: var(--background-dark);
 }

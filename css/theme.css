@@ -1,0 +1,17 @@
+#theme.on {
+  background-color: var(--background-dark);
+}
+
+#theme.on::before {
+  transform: translateX(30px);
+  background-color: var(--background-light);
+}
+
+body.on {
+  background-color: var(--background-light);
+  color: var(--background-dark);
+}
+
+a.on {
+  color: var(--background-dark);
+}
