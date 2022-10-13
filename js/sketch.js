@@ -1,23 +1,58 @@
 // Characters sets
-// const density = "Ñ@#W$9876543210?!abc;:+=-,._ ";
-const density = ".:-i|=+%0#@";
+const charSets = [".:-i|=+%0#@", "Ñ@#W$9876543210?!abc;:+=-,._ "];
+
+// console.log(body);
+
+// - charSets
+let set = 0;
+
+// - colorful on/off
+let colorful = false;
+
+// - letters color
+let charColor = "rgb(0,255,0)";
+
+// - invert on/off
+let invert = false;
+let invertValue = 0;
+
+// - density
+let density = 125;
+
+// - background on/off, - background color
+let bgColor = false;
+let bgColorValue = "rgb(0,0,0)";
 
 let canvas;
 let video;
-let main;
+
+// - reset
+function resetValues() {
+  set = 0;
+  colorful = false;
+  charColor = "rgb(0,255,0)";
+  invert = false;
+  invertValue = 0;
+  density = 125;
+  bgColor = false;
+  bgColorValue = "rgb(0,0,0)";
+}
 
 function setup() {
   canvas = createCanvas(700, 700);
-
   video = createCapture(VIDEO);
   video.size(50, 50);
   video.hide();
-
-  main = select("main");
 }
 
 function draw() {
-  clear();
+  if (bgColor) {
+    clear();
+    background(bgColorValue);
+  } else {
+    clear();
+  }
+
   video.loadPixels();
   let w = width / video.width;
   let h = height / video.height;
@@ -31,13 +66,30 @@ function draw() {
       const b = video.pixels[pixelIndex + 2];
       // Gray scale
       const avg = (r + g + b) / 3;
-      fill("green");
+
+      if (colorful) {
+        fill(r, g, b);
+      } else {
+        fill(charColor);
+      }
+
       textSize(w);
       textAlign(CENTER, CENTER);
-      const len = density.length;
-      const charIndex = floor(map(avg, 0, 122, len, 0));
+
+      let len = charSets[set].length;
+
+      if (invert) {
+        invertValue = len;
+        len = 0;
+      } else {
+        invertValue = 0;
+        len = charSets[set].length;
+      }
+
+      const charIndex = floor(map(avg, 0, density, len, invertValue));
+
       // Draw
-      text(density.charAt(charIndex), i * w + w * 0.5, j * h + h * 0.5);
+      text(charSets[set].charAt(charIndex), i * w + w * 0.5, j * h + h * 0.5);
     }
   }
   // console.log(floor(frameRate()));
@@ -46,5 +98,5 @@ function draw() {
   //   save("myImage.png");
   // }
 
-  // main.mousePressed(saveAsImage);
+  // htmlElement.mousePressed(saveAsImage);
 }
