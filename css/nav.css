@@ -13,6 +13,7 @@ nav {
   overflow: hidden;
   width: 60px;
   height: 30px;
+  margin-right: 70px;
   border-radius: 20px;
   background-color: var(--background-light);
   cursor: pointer;
@@ -33,4 +34,17 @@ nav {
   transition: transform 0.2s;
 
   background-color: var(--background-dark);
+}
+
+#bnt-menu {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 99;
+
+  transition: transform 0.2s;
 }

@@ -5,6 +5,15 @@
   font-family: "Courier New", Courier, monospace;
 }
 
+.hidden {
+  display: none;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
 html {
   --background-dark: #1c1d24;
   --background-light: #fff;
@@ -34,7 +43,7 @@ header {
 }
 
 footer {
-  padding: 20px;
+  padding: 40px;
   font-size: 20px;
   text-align: center;
 }

@@ -1,0 +1,19 @@
+#letters-set p {
+  margin-right: 20px;
+}
+
+#reset-option {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+}
+
+#reset {
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.2s;
+}
+
+#reset:hover {
+  opacity: 0.8;
+}

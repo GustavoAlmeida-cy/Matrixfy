@@ -1,0 +1,74 @@
+#bnt-menu.on {
+  transform: rotate(60deg);
+}
+
+#settings-menu {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.2s;
+}
+
+#settings-panel {
+  width: 50rem;
+  height: 50rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  padding: 100px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+}
+
+.option input {
+  cursor: pointer;
+}
+
+.option p {
+  margin-left: 20px;
+  font-size: 18pt;
+  user-select: none;
+}
+
+.option input[type="checkbox"],
+.option input[type="color"] {
+  width: 50px;
+  height: 50px;
+  border: none;
+}
+
+/* 
+- background canvas on/off
+  - checker
+
+- background color chose
+  - color picker
+
+- char colorful on/off
+  - checker
+
+- char color chose
+  - color picker
+
+- charSet chose
+  - checkers
+
+- charSet density chose
+  - input range
+
+- invert char algorithm
+  - checker
+
+- reset settings
+  - button
+*/
