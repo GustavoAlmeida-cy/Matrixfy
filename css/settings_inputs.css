@@ -1,5 +1,10 @@
 #letters-set p {
+  width: 30%;
+  height: 100%;
+  display: flex;
   margin-right: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
 #reset-option {
@@ -11,6 +16,8 @@
 #reset {
   width: 100%;
   height: 100%;
+  border-radius: 100%;
+  background-color: var(--bg-trans-dark);
   transition: opacity 0.2s;
 }
 

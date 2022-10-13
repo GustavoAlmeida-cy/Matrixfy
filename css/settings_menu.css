@@ -38,6 +38,14 @@
   margin-left: 20px;
   font-size: 18pt;
   user-select: none;
+
+  width: 50%;
+  height: 100%;
+  display: flex;
+  margin-right: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-trans-dark);
 }
 
 .option input[type="checkbox"],

@@ -3,6 +3,7 @@ const themeButton = document.querySelector("#theme");
 const body = document.querySelector("body");
 const a = document.querySelectorAll("a");
 const bntMenu = document.querySelector("#bnt-menu");
+const options = document.querySelectorAll(".option");
 const settings_menu = document.querySelector("#settings-menu");
 
 // Change theme class
@@ -12,6 +13,10 @@ themeButton.addEventListener("click", () => {
   body.classList.toggle("on");
 
   a.forEach((el) => {
+    el.classList.toggle("on");
+  });
+
+  options.forEach((el) => {
     el.classList.toggle("on");
   });
 });

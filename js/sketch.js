@@ -10,7 +10,7 @@ let set = 0;
 let colorful = false;
 
 // - letters color
-let charColor = "rgb(0,255,0)";
+let charColor = "#00ff00";
 
 // - invert on/off
 let invert = false;
@@ -20,23 +20,11 @@ let invertValue = 0;
 let density = 125;
 
 // - background on/off, - background color
-let bgColor = false;
-let bgColorValue = "rgb(0,0,0)";
+let bg = false;
+let bgColorValue = "#000000";
 
 let canvas;
 let video;
-
-// - reset
-function resetValues() {
-  set = 0;
-  colorful = false;
-  charColor = "rgb(0,255,0)";
-  invert = false;
-  invertValue = 0;
-  density = 125;
-  bgColor = false;
-  bgColorValue = "rgb(0,0,0)";
-}
 
 function setup() {
   canvas = createCanvas(700, 700);
@@ -46,11 +34,103 @@ function setup() {
 }
 
 function draw() {
-  if (bgColor) {
+  let inputBg = select("#background").elt;
+  inputBg.onchange = function () {
+    if (inputBg.checked) {
+      bg = true;
+    } else {
+      bg = false;
+    }
+  };
+
+  let inputBgColor = select("#background-color").elt;
+  inputBgColor.onchange = function () {
+    bgColorValue = inputBgColor.value;
+  };
+
+  if (bg) {
     clear();
     background(bgColorValue);
   } else {
     clear();
+  }
+
+  let inputColorful = select("#colorful").elt;
+  inputColorful.onchange = function () {
+    if (inputColorful.checked) {
+      colorful = true;
+    } else {
+      colorful = false;
+    }
+  };
+
+  let inputCharColor = select("#letters-color").elt;
+  inputCharColor.onchange = function () {
+    charColor = inputCharColor.value;
+  };
+
+  let inputCharA = select("#char-set-a").elt;
+  let inputCharB = select("#char-set-b").elt;
+
+  inputCharA.onchange = charSetChangeA;
+  inputCharB.onchange = charSetChangeB;
+
+  function charSetChangeA() {
+    if (inputCharA.checked) {
+      set = 0;
+      inputCharB.checked = false;
+    } else if (!inputCharA.checked) {
+      set = 1;
+      inputCharB.checked = true;
+    }
+  }
+
+  function charSetChangeB() {
+    if (inputCharB.checked) {
+      set = 1;
+      inputCharA.checked = false;
+    } else if (!inputCharB.checked) {
+      set = 0;
+      inputCharA.checked = true;
+    }
+  }
+
+  let inputInvert = select("#invert").elt;
+  inputInvert.onchange = function () {
+    if (inputInvert.checked) {
+      invert = true;
+    } else {
+      invert = false;
+    }
+  };
+
+  let inputDensity = select("#density").elt;
+  inputDensity.onchange = function () {
+    density = inputDensity.value;
+  };
+
+  let inputReset = select("#reset-option").elt;
+  inputReset.addEventListener("click", resetValues);
+
+  // - reset
+  function resetValues() {
+    bg = false;
+    bgColorValue = "#000000";
+    colorful = false;
+    charColor = "#00ff00";
+    set = 0;
+    invert = false;
+    invertValue = 0;
+    density = 125;
+
+    inputBg.checked = false;
+    inputBgColor.value = bgColorValue;
+    inputColorful.checked = false;
+    inputCharColor.value = charColor;
+    inputCharA.checked = true;
+    inputCharB.checked = false;
+    inputDensity.value = density;
+    inputInvert.checked = false;
   }
 
   video.loadPixels();

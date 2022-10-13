@@ -15,3 +15,8 @@ body.on {
 a.on {
   color: var(--background-dark);
 }
+
+.option.on p,
+.option.on #reset {
+  background-color: var(--bg-trans-light);
+}

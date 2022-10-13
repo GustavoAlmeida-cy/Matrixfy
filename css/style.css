@@ -17,6 +17,8 @@
 html {
   --background-dark: #1c1d24;
   --background-light: #fff;
+  --bg-trans-light: rgba(255, 255, 255, 0.5);
+  --bg-trans-dark: rgba(0, 0, 0, 0.5);
 }
 
 body {

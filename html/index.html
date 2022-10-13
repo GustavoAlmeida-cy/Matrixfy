@@ -53,31 +53,42 @@
       <div id="settings-panel">
         <div class="option">
           <input type="checkbox" class="hidden" />
-          <input type="checkbox" id="background" />
+          <input autocomplete="off" type="checkbox" id="background" />
           <p>Background</p>
         </div>
         <div class="option">
-          <input type="color" id="background-color" />
+          <input
+            autocomplete="off"
+            type="color"
+            value="#000000"
+            id="background-color"
+          />
           <p>Background-color</p>
         </div>
         <div class="option">
-          <input type="checkbox" id="colorful" />
+          <input autocomplete="off" type="checkbox" id="colorful" />
           <p>Colorful</p>
         </div>
         <div class="option">
-          <input type="color" id="letters-color" />
+          <input
+            autocomplete="off"
+            type="color"
+            value="#00FF00"
+            id="letters-color"
+          />
           <p>Letters-color</p>
         </div>
         <div class="option" id="letters-set">
           <input type="checkbox" class="hidden" />
-          <input type="checkbox" id="SuS" checked />
-          <p>SuS</p>
+          <input autocomplete="off" type="checkbox" id="char-set-a" checked />
+          <p>Char-set A</p>
           <input type="checkbox" class="hidden" />
-          <input type="checkbox" id="SoS" />
-          <p>SoS</p>
+          <input autocomplete="off" type="checkbox" id="char-set-b" />
+          <p>Char-set B</p>
         </div>
         <div class="option">
           <input
+            autocomplete="off"
             type="range"
             id="density"
             min="0"
@@ -88,7 +99,7 @@
           <p>Density</p>
         </div>
         <div class="option">
-          <input type="checkbox" id="invert" />
+          <input autocomplete="off" type="checkbox" id="invert" />
           <p>Invert</p>
         </div>
         <div class="option" id="reset-option">
