@@ -8,12 +8,19 @@ let charColor = "#00ff00";
 let invert = false;
 let invertValue = 0;
 let density = 125;
-let bg = false;
+let bg = true;
 let bgColorValue = "#000000";
 
 // Main elements
 let canvas;
 let video;
+
+P5Capture.setDefaultOptions({
+  format: "gif",
+  framerate: 15,
+  width: 700,
+  height: 700,
+});
 
 function setup() {
   // Canvas
@@ -22,6 +29,24 @@ function setup() {
   video = createCapture(VIDEO);
   video.size(50, 50);
   video.hide();
+
+  let btnRec = document.querySelector("#btn-record");
+  let p5c_btnRec = document.querySelector(".p5c-btn");
+  btnRec.addEventListener("click", () => {
+    p5c_btnRec.click();
+  });
+
+  let p5c_container = document.querySelector(".p5c-container");
+
+  p5c_container.classList.add("hidden");
+
+  let btnImage = select("#image-download");
+
+  function saveAsImage() {
+    save("myImage.png");
+  }
+
+  btnImage.mousePressed(saveAsImage);
 }
 
 function draw() {
@@ -35,6 +60,11 @@ function draw() {
   let inputInvert = select("#invert").elt;
   let inputDensity = select("#density").elt;
   let inputReset = select("#reset-option").elt;
+
+  let recCounter = document.querySelector("#record-counter");
+  let p5c_counter = document.querySelector(".p5c-counter");
+
+  recCounter.value = p5c_counter.innerHTML;
 
   // Input interactions
   inputBg.onchange = function () {
@@ -181,11 +211,4 @@ function draw() {
       text(charSets[set].charAt(charIndex), i * w + w * 0.5, j * h + h * 0.5);
     }
   }
-  // console.log(floor(frameRate()));
-
-  // function saveAsImage() {
-  //   save("myImage.png");
-  // }
-
-  // htmlElement.mousePressed(saveAsImage);
 }

@@ -5,6 +5,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: right;
+  gap: 50px;
 }
 
 #theme {
@@ -42,4 +43,50 @@ nav {
   cursor: pointer;
   z-index: 99;
   transition: transform 0.2s;
+}
+
+#btn-record {
+  background-color: red;
+  color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+  font-size: 14pt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#record-counter {
+  background-color: var(--background-dark);
+  color: var(--background-light);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  width: 150px;
+  height: 45px;
+  padding: 5px;
+  font-size: 14pt;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+
+  cursor: pointer;
+}
+
+#image-download {
+  background-color: var(--background-dark);
+  color: var(--background-light);
+
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  width: 70px;
+  height: 45px;
+  padding: 5px;
+  font-size: 14pt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
 }

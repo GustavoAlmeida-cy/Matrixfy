@@ -55,5 +55,6 @@ footer {
 
 a {
   text-decoration: none;
+  user-select: none;
   color: var(--background-light);
 }
