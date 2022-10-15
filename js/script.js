@@ -1,12 +1,12 @@
 // HTML elements
-const themeButton = document.querySelector("#theme");
 const body = document.querySelector("body");
 const a = document.querySelectorAll("a");
+const themeButton = document.querySelector("#theme");
 const bntMenu = document.querySelector("#bnt-menu");
-const options = document.querySelectorAll(".option");
 const settings_menu = document.querySelector("#settings-menu");
+const options = document.querySelectorAll(".option");
 
-// Change theme class
+// Change theme
 themeButton.addEventListener("click", () => {
   themeButton.classList.toggle("on");
 
@@ -21,7 +21,7 @@ themeButton.addEventListener("click", () => {
   });
 });
 
-// Change settings menu class
+// Change btn-menu and settings-menu class
 bntMenu.addEventListener("click", () => {
   bntMenu.classList.toggle("on");
   settings_menu.classList.toggle("hidden");

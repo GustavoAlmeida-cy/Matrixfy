@@ -1,40 +1,42 @@
-// Characters sets
+// Char-sets
 const charSets = [".:-i|=+%0#@", "Ñ@#W$9876543210?!abc;:+=-,._ "];
 
-// console.log(body);
-
-// - charSets
+// Variables and default values
 let set = 0;
-
-// - colorful on/off
 let colorful = false;
-
-// - letters color
 let charColor = "#00ff00";
-
-// - invert on/off
 let invert = false;
 let invertValue = 0;
-
-// - density
 let density = 125;
-
-// - background on/off, - background color
 let bg = false;
 let bgColorValue = "#000000";
 
+// Main elements
 let canvas;
 let video;
 
 function setup() {
+  // Canvas
   canvas = createCanvas(700, 700);
+  // Video capture
   video = createCapture(VIDEO);
   video.size(50, 50);
   video.hide();
 }
 
 function draw() {
+  // HTML elements - option inputs
   let inputBg = select("#background").elt;
+  let inputBgColor = select("#background-color").elt;
+  let inputColorful = select("#colorful").elt;
+  let inputCharColor = select("#letters-color").elt;
+  let inputCharB = select("#char-set-b").elt;
+  let inputCharA = select("#char-set-a").elt;
+  let inputInvert = select("#invert").elt;
+  let inputDensity = select("#density").elt;
+  let inputReset = select("#reset-option").elt;
+
+  // Input interactions
   inputBg.onchange = function () {
     if (inputBg.checked) {
       bg = true;
@@ -43,19 +45,10 @@ function draw() {
     }
   };
 
-  let inputBgColor = select("#background-color").elt;
   inputBgColor.onchange = function () {
     bgColorValue = inputBgColor.value;
   };
 
-  if (bg) {
-    clear();
-    background(bgColorValue);
-  } else {
-    clear();
-  }
-
-  let inputColorful = select("#colorful").elt;
   inputColorful.onchange = function () {
     if (inputColorful.checked) {
       colorful = true;
@@ -64,17 +57,28 @@ function draw() {
     }
   };
 
-  let inputCharColor = select("#letters-color").elt;
   inputCharColor.onchange = function () {
     charColor = inputCharColor.value;
   };
 
-  let inputCharA = select("#char-set-a").elt;
-  let inputCharB = select("#char-set-b").elt;
+  inputInvert.onchange = function () {
+    if (inputInvert.checked) {
+      invert = true;
+    } else {
+      invert = false;
+    }
+  };
+
+  inputDensity.onchange = function () {
+    density = inputDensity.value;
+  };
 
   inputCharA.onchange = charSetChangeA;
   inputCharB.onchange = charSetChangeB;
 
+  inputReset.addEventListener("click", resetValues);
+
+  // Input functions
   function charSetChangeA() {
     if (inputCharA.checked) {
       set = 0;
@@ -95,24 +99,6 @@ function draw() {
     }
   }
 
-  let inputInvert = select("#invert").elt;
-  inputInvert.onchange = function () {
-    if (inputInvert.checked) {
-      invert = true;
-    } else {
-      invert = false;
-    }
-  };
-
-  let inputDensity = select("#density").elt;
-  inputDensity.onchange = function () {
-    density = inputDensity.value;
-  };
-
-  let inputReset = select("#reset-option").elt;
-  inputReset.addEventListener("click", resetValues);
-
-  // - reset
   function resetValues() {
     bg = false;
     bgColorValue = "#000000";
@@ -133,31 +119,53 @@ function draw() {
     inputInvert.checked = false;
   }
 
+  // Background mode
+  if (bg) {
+    clear();
+    background(bgColorValue);
+  } else {
+    clear();
+  }
+
+  // Load Pixels
   video.loadPixels();
+
+  // Dimensions
   let w = width / video.width;
   let h = height / video.height;
+
   // Get pixels index
   for (let j = 0; j < video.height; j++) {
+    // Column
     for (let i = 0; i < video.width; i++) {
+      // Row
+
+      // Pixel index
       const pixelIndex = (i + j * video.width) * 4;
+
       // Colors
       const r = video.pixels[pixelIndex + 0];
       const g = video.pixels[pixelIndex + 1];
       const b = video.pixels[pixelIndex + 2];
+
       // Gray scale
       const avg = (r + g + b) / 3;
 
+      // Color mode
       if (colorful) {
         fill(r, g, b);
       } else {
         fill(charColor);
       }
 
+      // Text options
       textSize(w);
       textAlign(CENTER, CENTER);
 
+      // Char-set length
       let len = charSets[set].length;
 
+      // Brightness mode
       if (invert) {
         invertValue = len;
         len = 0;
@@ -166,6 +174,7 @@ function draw() {
         len = charSets[set].length;
       }
 
+      // Map brightness with a character index
       const charIndex = floor(map(avg, 0, density, len, invertValue));
 
       // Draw

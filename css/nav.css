@@ -5,7 +5,6 @@ nav {
   display: flex;
   align-items: center;
   justify-content: right;
-  gap: 50px;
 }
 
 #theme {
@@ -15,10 +14,9 @@ nav {
   height: 30px;
   margin-right: 70px;
   border-radius: 20px;
-  background-color: var(--background-light);
   cursor: pointer;
+  background-color: var(--background-light);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-
   transition: background 0.2s;
 }
 
@@ -30,10 +28,8 @@ nav {
   border-radius: 20px;
   top: 0;
   left: 0;
-
-  transition: transform 0.2s;
-
   background-color: var(--background-dark);
+  transition: transform 0.2s;
 }
 
 #bnt-menu {
@@ -45,6 +41,5 @@ nav {
   justify-content: center;
   cursor: pointer;
   z-index: 99;
-
   transition: transform 0.2s;
 }

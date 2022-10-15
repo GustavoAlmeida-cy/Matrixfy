@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Matrixfy</title>
+    <link rel="shortcut icon" href="../favicon.svg" type="image/x-icon" />
     <!-- styles -->
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/canvas.css" />
     <link rel="stylesheet" href="../css/nav.css" />
+    <link rel="stylesheet" href="../css/settings_menu.css" />
+    <link rel="stylesheet" href="../css/settings_inputs.css" />
     <!-- theme -->
     <link rel="stylesheet" href="../css/theme.css" />
-    <!-- settings-menu -->
-    <link rel="stylesheet" href="../css/settings_menu.css" />
-    <!-- settings-inputs -->
-    <link rel="stylesheet" href="../css/settings_inputs.css" />
     <!-- scripts -->
+    <script defer src="../js/script.js"></script>
     <!-- p5.js -->
     <script
       defer
@@ -28,8 +28,6 @@
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
     ></script>
-    <!-- generic -->
-    <script defer src="../js/script.js"></script>
   </head>
   <body>
     <header>
@@ -46,7 +44,7 @@
         title="GitHub"
         target="_blank"
         href="https://github.com/GustavoAlmeida-cy/Matrixfy"
-        >GitHub</a
+        ><ion-icon name="logo-github"></ion-icon> GitHub</a
       >
     </footer>
     <div id="settings-menu" class="hidden">
@@ -86,7 +84,8 @@
           <input autocomplete="off" type="checkbox" id="char-set-b" />
           <p>Char-set B</p>
         </div>
-        <div class="option">
+        <div class="option" id="density-option">
+          <span>-</span>
           <input
             autocomplete="off"
             type="range"
@@ -96,9 +95,10 @@
             step="5"
             value="125"
           />
+          <span>+</span>
           <p>Density</p>
         </div>
-        <div class="option">
+        <div class="option" id="invert-option">
           <input autocomplete="off" type="checkbox" id="invert" />
           <p>Invert</p>
         </div>

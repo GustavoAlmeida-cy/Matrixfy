@@ -1,4 +1,6 @@
-#letters-set p {
+#letters-set p,
+#density-option p,
+#invert-option p {
   width: 30%;
   height: 100%;
   display: flex;
