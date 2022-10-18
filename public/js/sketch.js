@@ -8,26 +8,30 @@ let charColor = "#00ff00";
 let invert = false;
 let invertValue = 0;
 let density = 125;
-let bg = true;
 let bgColorValue = "#000000";
 
 // Main elements
 let canvas;
 let video;
 
+let cW = window.innerWidth;
+
+if (cW >= 700) {
+  cW = 700;
+} else {
+  cW = window.innerWidth - 25;
+}
+
 P5Capture.setDefaultOptions({
   format: "gif",
   framerate: 15,
-  width: 700,
-  height: 700,
+  width: cW,
+  height: cW,
 });
-
-let cW = window.innerWidth;
-let cH = window.innerHeight;
 
 function setup() {
   // Canvas
-  canvas = createCanvas(100, 100);
+  canvas = createCanvas(cW, cW);
   // Video capture
   video = createCapture(VIDEO);
   video.size(50, 50);
@@ -54,7 +58,6 @@ function setup() {
 
 function draw() {
   // HTML elements - option inputs
-  let inputBg = select("#background").elt;
   let inputBgColor = select("#background-color").elt;
   let inputColorful = select("#colorful").elt;
   let inputCharColor = select("#letters-color").elt;
@@ -70,14 +73,6 @@ function draw() {
   recCounter.value = p5c_counter.innerHTML;
 
   // Input interactions
-  inputBg.onchange = function () {
-    if (inputBg.checked) {
-      bg = true;
-    } else {
-      bg = false;
-    }
-  };
-
   inputBgColor.onchange = function () {
     bgColorValue = inputBgColor.value;
   };
@@ -133,7 +128,6 @@ function draw() {
   }
 
   function resetValues() {
-    bg = true;
     bgColorValue = "#000000";
     colorful = false;
     charColor = "#00ff00";
@@ -142,7 +136,6 @@ function draw() {
     invertValue = 0;
     density = 125;
 
-    inputBg.checked = true;
     inputBgColor.value = bgColorValue;
     inputColorful.checked = false;
     inputCharColor.value = charColor;
@@ -152,13 +145,8 @@ function draw() {
     inputInvert.checked = false;
   }
 
-  // Background mode
-  if (bg) {
-    clear();
-    background(bgColorValue);
-  } else {
-    clear();
-  }
+  clear();
+  background(bgColorValue);
 
   // Load Pixels
   video.loadPixels();

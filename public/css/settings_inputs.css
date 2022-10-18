@@ -1,12 +1,27 @@
+#letters-set {
+  width: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#letters-set input {
+  width: 50px;
+  height: 50px;
+}
+
+#letters-set p {
+  margin-left: 0;
+}
+
 #letters-set p,
 #density-option p,
 #invert-option p {
-  width: 30%;
-  height: 100%;
+  width: 12rem;
   display: flex;
-  margin-right: 20px;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 #reset-option {
