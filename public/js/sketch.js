@@ -22,9 +22,12 @@ P5Capture.setDefaultOptions({
   height: 700,
 });
 
+let cW = window.innerWidth;
+let cH = window.innerHeight;
+
 function setup() {
   // Canvas
-  canvas = createCanvas(700, 700);
+  canvas = createCanvas(100, 100);
   // Video capture
   video = createCapture(VIDEO);
   video.size(50, 50);
@@ -130,7 +133,7 @@ function draw() {
   }
 
   function resetValues() {
-    bg = false;
+    bg = true;
     bgColorValue = "#000000";
     colorful = false;
     charColor = "#00ff00";
@@ -139,7 +142,7 @@ function draw() {
     invertValue = 0;
     density = 125;
 
-    inputBg.checked = false;
+    inputBg.checked = true;
     inputBgColor.value = bgColorValue;
     inputColorful.checked = false;
     inputCharColor.value = charColor;

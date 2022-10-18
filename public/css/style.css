@@ -15,6 +15,7 @@
 }
 
 html {
+  font-size: 62.5%;
   --background-dark: #1c1d24;
   --background-light: #fff;
   --bg-trans-light: rgba(255, 255, 255, 0.5);
@@ -22,9 +23,9 @@ html {
 }
 
 body {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  /* position: absolute; */
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
@@ -35,18 +36,38 @@ body {
 }
 
 header {
-  padding: 20px;
-  font-size: 45px;
+  background: blue;
+  width: 100%;
+  height: 10vh;
+  /* padding: 20px; */
+  /* font-size: 3rem; */
   font-weight: bold;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  order: 1;
+  overflow-x: auto;
+}
+
+main {
+  
+  order: 2;
+  background: red;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 footer {
-  padding: 40px;
-  font-size: 20px;
+  order: 3;
+  width: 100%;
+  height: 10vh;
+  background: yellow;
+  font-size: 2rem;
   text-align: center;
   display: flex;
   align-items: center;

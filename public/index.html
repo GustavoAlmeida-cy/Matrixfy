@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="./css/settings_inputs.css" />
     <!-- theme -->
     <link rel="stylesheet" href="./css/theme.css" />
+    <!-- media queries -->
+    <link
+      rel="stylesheet"
+      href="./css/media.css"
+      media="screen and (max-width: 655px)"
+    />
     <!-- scripts -->
     <script defer src="./js/script.js"></script>
     <!-- p5.js -->
@@ -37,11 +43,8 @@
   </head>
   <body>
     <header>
-      <p title="Logo" id="logo">Matrixfy</p>
       <nav>
-        <div id="bnt-menu">
-          <ion-icon name="settings-outline"></ion-icon>
-        </div>
+        <p title="Logo" id="logo">Matrixfy</p>
         <div id="btn-record">Rec</div>
         <input
           type="text"
@@ -50,7 +53,12 @@
           id="record-counter"
         />
         <div id="image-download">image</div>
-        <div title="Theme" id="theme"></div>
+        <div title="Theme" id="theme">
+          <ion-icon name="ellipse-outline"></ion-icon>
+        </div>
+        <div id="bnt-menu">
+          <ion-icon name="settings-outline"></ion-icon>
+        </div>
       </nav>
     </header>
     <footer>
