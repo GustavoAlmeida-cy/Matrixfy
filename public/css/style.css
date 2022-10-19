@@ -57,6 +57,7 @@ main {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: rgb(25, 30, 40);
 }
 
 footer {

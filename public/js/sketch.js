@@ -14,39 +14,59 @@ let bgColorValue = "#000000";
 let canvas;
 let video;
 
+// Canvas dimensions
 let cW = window.innerWidth;
+let cH = window.innerHeight;
 
+// Canvas dimensions check
 if (cW >= 700) {
   cW = 700;
 } else {
-  cW = window.innerWidth - 25;
+  cW = window.innerWidth;
 }
 
+if (cH >= 700) {
+  cH = 700;
+} else {
+  cH = window.innerHeight;
+}
+
+// p5.capture options
 P5Capture.setDefaultOptions({
   format: "gif",
-  framerate: 24,
+  framerate: 20,
   width: cW,
-  height: cW,
+  height: cH,
 });
 
 function setup() {
   // Canvas
-  canvas = createCanvas(cW, cW);
+  canvas = createCanvas(cW, cH);
   // Video capture
   video = createCapture(VIDEO);
+
+  console.log(video.size());
+
+  alert(video.size().width);
+
+  alert(video.size().height);
+
   video.size(50, 50);
+  console.log(video.size());
   video.hide();
 
+  // p5.capture and HTML button interaction
   let btnRec = document.querySelector("#btn-record");
   let p5c_btnRec = document.querySelector(".p5c-btn");
+
   btnRec.addEventListener("click", () => {
     p5c_btnRec.click();
   });
 
   let p5c_container = document.querySelector(".p5c-container");
-
   p5c_container.classList.add("hidden");
 
+  // Download image button
   let btnImage = select("#image-download");
 
   function saveAsImage() {
@@ -67,6 +87,7 @@ function draw() {
   let inputDensity = select("#density").elt;
   let inputReset = select("#reset-option").elt;
 
+  // p5.capture HTML elements
   let recCounter = document.querySelector("#record-counter");
   let p5c_counter = document.querySelector(".p5c-counter");
 
