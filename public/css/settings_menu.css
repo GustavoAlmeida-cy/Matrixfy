@@ -47,6 +47,7 @@
   font-size: 22pt;
   padding: 10px;
   user-select: none;
+  color: var(--background-light);
 }
 
 .option input[type="checkbox"],

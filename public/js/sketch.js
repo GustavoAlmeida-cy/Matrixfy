@@ -24,7 +24,7 @@ if (cW >= 700) {
 
 P5Capture.setDefaultOptions({
   format: "gif",
-  framerate: 15,
+  framerate: 24,
   width: cW,
   height: cW,
 });
