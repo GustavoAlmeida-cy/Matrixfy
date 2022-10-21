@@ -11,25 +11,18 @@ let density = 125;
 let bgColorValue = "#000000";
 
 // Main elements
+let mode = false;
 let canvas;
+let content;
 let video;
+let img;
 
 // Canvas dimensions
 let cW = window.innerWidth;
 let cH = window.innerHeight;
 
-// Canvas dimensions check
-if (cW >= 700) {
-  cW = 700;
-} else {
-  cW = window.innerWidth;
-}
-
-if (cH >= 700) {
-  cH = 700;
-} else {
-  cH = window.innerHeight;
-}
+cW = 700;
+cH = 700;
 
 // p5.capture options
 P5Capture.setDefaultOptions({
@@ -39,21 +32,19 @@ P5Capture.setDefaultOptions({
   height: cH,
 });
 
+function preload() {
+  img = loadImage("./images/neo.jpg");
+}
+
 function setup() {
   // Canvas
   canvas = createCanvas(cW, cH);
-  // Video capture
-  video = createCapture(VIDEO);
 
-  console.log(video.size());
-
-  alert(video.size().width);
-
-  alert(video.size().height);
-
+  video = createCapture(VIDEO).class("cam");
   video.size(50, 50);
-  console.log(video.size());
-  video.hide();
+
+  content = img;
+  content.resize(50, 50);
 
   // p5.capture and HTML button interaction
   let btnRec = document.querySelector("#btn-record");
@@ -66,17 +57,71 @@ function setup() {
   let p5c_container = document.querySelector(".p5c-container");
   p5c_container.classList.add("hidden");
 
+  // ----
+
+  let inputImageUpload;
+  inputImageUpload = createFileInput(handleFile).class("hidden");
+  inputImageUpload.position(0, 0);
+
+  let btnImageUpload;
+  btnImageUpload = select("#image-upload").elt;
+  btnImageUpload.addEventListener("click", () => {
+    inputImageUpload.elt.click();
+  });
+
+  function handleFile(file) {
+    if (file.type === "image") {
+      img = loadImage(file.data);
+      img.resize(50, 50);
+    } else {
+      img = null;
+    }
+  }
+
   // Download image button
-  let btnImage = select("#image-download");
+  let btnImageDownload = select("#image-download");
 
   function saveAsImage() {
     save("myImage.png");
   }
 
-  btnImage.mousePressed(saveAsImage);
+  btnImageDownload.mousePressed(saveAsImage);
 }
 
 function draw() {
+  console.log(mode);
+
+  // let inputImageUpload = select("#input-upload");
+
+  // ----
+  let btnMode = document.querySelector("#btn-mode");
+
+  btnMode.addEventListener("click", () => {
+    console.log("SS");
+
+    if (mode) {
+      mode = false;
+    } else if (!mode) {
+      mode = true;
+    }
+  });
+
+  if (mode) {
+    // Video capture
+    content = video;
+    content.size(50, 50);
+    // content.hide();
+  } else {
+    content = img;
+    content.resize(50, 50);
+  }
+
+  if (!mode) {
+    content.resize(50, 50);
+  }
+
+  content.loadPixels();
+
   // HTML elements - option inputs
   let inputBgColor = select("#background-color").elt;
   let inputColorful = select("#colorful").elt;
@@ -170,25 +215,26 @@ function draw() {
   background(bgColorValue);
 
   // Load Pixels
-  video.loadPixels();
+  // if (mode) {
+  // }
 
   // Dimensions
-  let w = width / video.width;
-  let h = height / video.height;
+  let w = width / content.width;
+  let h = height / content.height;
 
   // Get pixels index
-  for (let j = 0; j < video.height; j++) {
+  for (let j = 0; j < content.height; j++) {
     // Column
-    for (let i = 0; i < video.width; i++) {
+    for (let i = 0; i < content.width; i++) {
       // Row
 
       // Pixel index
-      const pixelIndex = (i + j * video.width) * 4;
+      const pixelIndex = (i + j * content.width) * 4;
 
       // Colors
-      const r = video.pixels[pixelIndex + 0];
-      const g = video.pixels[pixelIndex + 1];
-      const b = video.pixels[pixelIndex + 2];
+      const r = content.pixels[pixelIndex + 0];
+      const g = content.pixels[pixelIndex + 1];
+      const b = content.pixels[pixelIndex + 2];
 
       // Gray scale
       const avg = (r + g + b) / 3;

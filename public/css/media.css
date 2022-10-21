@@ -9,6 +9,14 @@
   #logo {
     display: none;
   }
+
+  #btn-record {
+    display: none;
+  }
+
+  #record-counter {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 425px) {

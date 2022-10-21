@@ -25,7 +25,8 @@ html {
 body {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -56,15 +57,15 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  background: rgb(25, 30, 40);
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 footer {
   order: 3;
   width: 100%;
   height: 10vh;
-  font-size: 2rem;
+  font-size: 3rem;
   text-align: center;
   display: flex;
   align-items: center;

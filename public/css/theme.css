@@ -12,6 +12,14 @@
   display: block;
 }
 
+#btn-mode.on #img-icon {
+  display: none;
+}
+
+#btn-mode.on #cam-icon {
+  display: block;
+}
+
 /* Whole document */
 body.on {
   color: var(--background-dark);

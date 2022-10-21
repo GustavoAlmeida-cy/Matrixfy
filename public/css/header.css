@@ -1,12 +1,30 @@
-#logo {
-  font-size: 3rem;
-  text-align: center;
+#btn-mode {
+  width: 55px;
+  height: 55px;
+  padding: 6px;
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(10, 20, 140);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+#img-icon {
+  display: visible;
+}
+
+#cam-icon {
+  display: none;
 }
 
 #theme {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,8 +46,8 @@
 }
 
 #bnt-menu {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -46,10 +64,10 @@
 }
 
 #btn-record {
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   padding: 5px;
-  font-size: 14pt;
+  font-size: 2.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,22 +81,25 @@
 #record-counter {
   width: 150px;
   height: 45px;
-  padding: 5px;
+  padding: 0.5rem;
   font-size: 14pt;
   text-align: center;
   border-radius: 10px;
   border: none;
-  cursor: pointer;
+  user-select: none;
+  outline: none;
+  cursor: default;
   color: var(--background-light);
   background-color: var(--background-dark);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
+#image-upload,
 #image-download {
-  width: 70px;
-  height: 45px;
-  padding: 5px;
-  font-size: 14pt;
+  width: 55px;
+  height: 55px;
+  padding: 6px;
+  font-size: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;

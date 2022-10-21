@@ -1,3 +1,11 @@
 canvas {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
+
+.cam {
+  position: absolute;
+  z-index: -99;
+  top: 0;
+  left: -100px;
+  opacity: 1;
+}
