@@ -5,9 +5,20 @@
   }
 }
 
-@media screen and (max-width: 655px) {
-  #logo {
+@media screen and (max-width: 700px) {
+  #btn-mode,
+  #btn-record,
+  #record-counter {
     display: none;
+  }
+
+  body {
+    justify-content: initial;
+  }
+
+  main {
+    display: block;
+    height: fit-content;
   }
 }
 

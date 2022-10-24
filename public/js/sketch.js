@@ -39,9 +39,12 @@ function setup() {
   // Canvas
   canvas = createCanvas(cW, cH);
 
-  // Video
-  video = createCapture(VIDEO).class("cam");
-  video.size(50, 50);
+  // Mobile camera disable
+  if (window.innerWidth >= 700) {
+    // Video
+    video = createCapture(VIDEO).class("cam");
+    video.size(50, 50);
+  }
 
   // Image
   content = img;
