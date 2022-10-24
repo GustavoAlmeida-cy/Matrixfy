@@ -24,12 +24,13 @@
 #theme {
   width: 55px;
   height: 55px;
+  padding: 10px;
+  font-size: 5rem;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 4rem;
   z-index: 99;
   color: var(--background-dark);
   background-color: var(--background-light);
@@ -98,7 +99,7 @@
 #image-download {
   width: 55px;
   height: 55px;
-  padding: 6px;
+  padding: 10px;
   font-size: 4rem;
   display: flex;
   align-items: center;

@@ -1,7 +1,14 @@
 // Char-sets
 const charSets = [".:-i|=+%0#@", "Ñ@#W$9876543210?!abc;:+=-,._ "];
 
+// Main elements
+let canvas;
+let content;
+let video;
+let img;
+
 // Variables and default values
+let mode = false;
 let set = 0;
 let colorful = false;
 let charColor = "#00ff00";
@@ -10,19 +17,9 @@ let invertValue = 0;
 let density = 125;
 let bgColorValue = "#000000";
 
-// Main elements
-let mode = false;
-let canvas;
-let content;
-let video;
-let img;
-
 // Canvas dimensions
-let cW = window.innerWidth;
-let cH = window.innerHeight;
-
-cW = 700;
-cH = 700;
+let cW = 700;
+let cH = 700;
 
 // p5.capture options
 P5Capture.setDefaultOptions({
@@ -32,43 +29,54 @@ P5Capture.setDefaultOptions({
   height: cH,
 });
 
+// p5 - function
 function preload() {
   img = loadImage("./images/neo.jpg");
 }
 
+// p5 - function
 function setup() {
   // Canvas
   canvas = createCanvas(cW, cH);
 
+  // Video
   video = createCapture(VIDEO).class("cam");
   video.size(50, 50);
 
+  // Image
   content = img;
   content.resize(50, 50);
 
-  // p5.capture and HTML button interaction
-  let btnRec = document.querySelector("#btn-record");
+  // p5.capture button
   let p5c_btnRec = document.querySelector(".p5c-btn");
+
+  // Record capture button
+  let btnRec = document.querySelector("#btn-record");
+
+  // Disable p5.capture GUI
+  let p5c_container = document
+    .querySelector(".p5c-container")
+    .classList.add("hidden");
 
   btnRec.addEventListener("click", () => {
     p5c_btnRec.click();
   });
 
-  let p5c_container = document.querySelector(".p5c-container");
-  p5c_container.classList.add("hidden");
-
-  // ----
-
-  let inputImageUpload;
-  inputImageUpload = createFileInput(handleFile).class("hidden");
+  // Upload input
+  let inputImageUpload = createFileInput(handleFile).class("hidden");
   inputImageUpload.position(0, 0);
 
-  let btnImageUpload;
-  btnImageUpload = select("#image-upload").elt;
+  // Upload button
+  let btnImageUpload = select("#image-upload").elt;
   btnImageUpload.addEventListener("click", () => {
     inputImageUpload.elt.click();
   });
 
+  // Download image button
+  let btnImageDownload = select("#image-download");
+  btnImageDownload.mousePressed(saveAsImage);
+
+  // Upload function
   function handleFile(file) {
     if (file.type === "image") {
       img = loadImage(file.data);
@@ -78,27 +86,17 @@ function setup() {
     }
   }
 
-  // Download image button
-  let btnImageDownload = select("#image-download");
-
+  // Download function
   function saveAsImage() {
-    save("myImage.png");
+    save("matrixfy.png");
   }
-
-  btnImageDownload.mousePressed(saveAsImage);
 }
 
+// p5 - function
 function draw() {
-  console.log(mode);
-
-  // let inputImageUpload = select("#input-upload");
-
-  // ----
   let btnMode = document.querySelector("#btn-mode");
 
   btnMode.addEventListener("click", () => {
-    console.log("SS");
-
     if (mode) {
       mode = false;
     } else if (!mode) {
@@ -107,16 +105,10 @@ function draw() {
   });
 
   if (mode) {
-    // Video capture
     content = video;
     content.size(50, 50);
-    // content.hide();
-  } else {
+  } else if (!mode) {
     content = img;
-    content.resize(50, 50);
-  }
-
-  if (!mode) {
     content.resize(50, 50);
   }
 
@@ -194,6 +186,7 @@ function draw() {
   }
 
   function resetValues() {
+    // Values
     bgColorValue = "#000000";
     colorful = false;
     charColor = "#00ff00";
@@ -202,6 +195,7 @@ function draw() {
     invertValue = 0;
     density = 125;
 
+    // Inputs
     inputBgColor.value = bgColorValue;
     inputColorful.checked = false;
     inputCharColor.value = charColor;
@@ -213,10 +207,6 @@ function draw() {
 
   clear();
   background(bgColorValue);
-
-  // Load Pixels
-  // if (mode) {
-  // }
 
   // Dimensions
   let w = width / content.width;
