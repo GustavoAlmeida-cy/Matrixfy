@@ -17,6 +17,65 @@ let invertValue = 0;
 let density = 125;
 let bgColorValue = "#000000";
 
+// HTML elements
+let inputBgColor = document.querySelector("#background-color");
+let inputColorful = document.querySelector("#colorful");
+let inputCharColor = document.querySelector("#letters-color");
+let inputCharB = document.querySelector("#char-set-b");
+let inputCharA = document.querySelector("#char-set-a");
+let inputInvert = document.querySelector("#invert");
+let inputDensity = document.querySelector("#density");
+let inputReset = document.querySelector("#reset-option");
+
+// HTML p5.capture
+let recCounter = document.querySelector("#record-counter");
+
+// Input interaction
+inputReset.addEventListener("click", resetValues);
+inputCharA.onchange = charSetChangeA;
+inputCharB.onchange = charSetChangeB;
+
+// Input functions
+function charSetChangeA() {
+  if (inputCharA.checked) {
+    set = 0;
+    inputCharB.checked = false;
+  } else if (!inputCharA.checked) {
+    set = 1;
+    inputCharB.checked = true;
+  }
+}
+
+function charSetChangeB() {
+  if (inputCharB.checked) {
+    set = 1;
+    inputCharA.checked = false;
+  } else if (!inputCharB.checked) {
+    set = 0;
+    inputCharA.checked = true;
+  }
+}
+
+function resetValues() {
+  // Values
+  bgColorValue = "#000000";
+  colorful = false;
+  charColor = "#00ff00";
+  set = 0;
+  invert = false;
+  invertValue = 0;
+  density = 125;
+
+  // Inputs
+  inputBgColor.value = bgColorValue;
+  inputColorful.checked = false;
+  inputCharColor.value = charColor;
+  inputCharA.checked = true;
+  inputCharB.checked = false;
+  inputDensity.value = density;
+  inputInvert.checked = false;
+}
+
 // Canvas dimensions
 let cW = 700;
 let cH = 700;
@@ -93,10 +152,8 @@ function setup() {
   function saveAsImage() {
     save("matrixfy.png");
   }
-}
 
-// p5 - function
-function draw() {
+  // Mode button
   let btnMode = document.querySelector("#btn-mode");
 
   btnMode.addEventListener("click", () => {
@@ -106,7 +163,15 @@ function draw() {
       mode = true;
     }
   });
+}
 
+// p5 - function
+function draw() {
+  // p5.capture
+  let p5c_counter = document.querySelector(".p5c-counter");
+  recCounter.value = p5c_counter.innerHTML;
+
+  // Mode verify
   if (mode) {
     content = video;
     content.size(50, 50);
@@ -115,105 +180,33 @@ function draw() {
     content.resize(50, 50);
   }
 
+  // Load content pixels
   content.loadPixels();
 
-  // HTML elements - option inputs
-  let inputBgColor = select("#background-color").elt;
-  let inputColorful = select("#colorful").elt;
-  let inputCharColor = select("#letters-color").elt;
-  let inputCharB = select("#char-set-b").elt;
-  let inputCharA = select("#char-set-a").elt;
-  let inputInvert = select("#invert").elt;
-  let inputDensity = select("#density").elt;
-  let inputReset = select("#reset-option").elt;
+  // Input values change
+  bgColorValue = inputBgColor.value;
+  charColor = inputCharColor.value;
+  density = inputDensity.value;
 
-  // p5.capture HTML elements
-  let recCounter = document.querySelector("#record-counter");
-  let p5c_counter = document.querySelector(".p5c-counter");
-
-  recCounter.value = p5c_counter.innerHTML;
-
-  // Input interactions
-  inputBgColor.onchange = function () {
-    bgColorValue = inputBgColor.value;
-  };
-
-  inputColorful.onchange = function () {
-    if (inputColorful.checked) {
-      colorful = true;
-    } else {
-      colorful = false;
-    }
-  };
-
-  inputCharColor.onchange = function () {
-    charColor = inputCharColor.value;
-  };
-
-  inputInvert.onchange = function () {
-    if (inputInvert.checked) {
-      invert = true;
-    } else {
-      invert = false;
-    }
-  };
-
-  inputDensity.onchange = function () {
-    density = inputDensity.value;
-  };
-
-  inputCharA.onchange = charSetChangeA;
-  inputCharB.onchange = charSetChangeB;
-
-  inputReset.addEventListener("click", resetValues);
-
-  // Input functions
-  function charSetChangeA() {
-    if (inputCharA.checked) {
-      set = 0;
-      inputCharB.checked = false;
-    } else if (!inputCharA.checked) {
-      set = 1;
-      inputCharB.checked = true;
-    }
-  }
-
-  function charSetChangeB() {
-    if (inputCharB.checked) {
-      set = 1;
-      inputCharA.checked = false;
-    } else if (!inputCharB.checked) {
-      set = 0;
-      inputCharA.checked = true;
-    }
-  }
-
-  function resetValues() {
-    // Values
-    bgColorValue = "#000000";
+  if (inputColorful.checked) {
+    colorful = true;
+  } else {
     colorful = false;
-    charColor = "#00ff00";
-    set = 0;
-    invert = false;
-    invertValue = 0;
-    density = 125;
-
-    // Inputs
-    inputBgColor.value = bgColorValue;
-    inputColorful.checked = false;
-    inputCharColor.value = charColor;
-    inputCharA.checked = true;
-    inputCharB.checked = false;
-    inputDensity.value = density;
-    inputInvert.checked = false;
   }
 
-  clear();
-  background(bgColorValue);
+  if (inputInvert.checked) {
+    invert = true;
+  } else {
+    invert = false;
+  }
 
   // Dimensions
   let w = width / content.width;
   let h = height / content.height;
+
+  // Canvas options
+  clear();
+  background(bgColorValue);
 
   // Get pixels index
   for (let j = 0; j < content.height; j++) {

@@ -31,7 +31,6 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 99;
   color: var(--background-dark);
   background-color: var(--background-light);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
